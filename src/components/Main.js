@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { todoActionCreators } from '../modules/todoReducer';
 
-function Main() {
+function Main({ todos, addToDo }) {
+  console.log(todos);
   const [text, setText] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if (text.trim() === '') {
+      alert('내용을 입력해주세요!');
+    }
+    addToDo(text);
     setText('');
   };
 
@@ -18,10 +25,18 @@ function Main() {
       <h1>Write a to do here!</h1>
       <form onSubmit={onSubmit}>
         <input type='text' value={text} onChange={onChange} />
-        <button onSubmit={onSubmit}>Submit</button>
+        <button>Submit</button>
       </form>
     </div>
   );
 }
 
-export default Main;
+const mapStateToProps = (state, ownProps) => {
+  return { todos: state };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return { addToDo: (text) => dispatch(todoActionCreators.add(text)) };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
