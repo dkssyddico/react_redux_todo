@@ -4,7 +4,7 @@ import { todoActionCreators } from '../modules/todoReducer';
 import Todo from './Todo';
 
 function Main({ todos, addToDo }) {
-  console.log(todos);
+  // console.log(todos);
   const [text, setText] = useState('');
 
   const onSubmit = (e) => {
@@ -30,7 +30,7 @@ function Main({ todos, addToDo }) {
       </form>
       <ul>
         {todos.map((todo) => (
-          <Todo key={todo.id} id={todo.id} text={todo.text} />
+          <Todo key={todo.id} {...todo} />
         ))}
       </ul>
     </div>
