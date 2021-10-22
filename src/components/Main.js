@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { todoActionCreators } from '../modules/todoReducer';
+import Todo from './Todo';
 
 function Main({ todos, addToDo }) {
   console.log(todos);
@@ -27,6 +28,11 @@ function Main({ todos, addToDo }) {
         <input type='text' value={text} onChange={onChange} />
         <button>Submit</button>
       </form>
+      <ul>
+        {todos.map((todo) => (
+          <Todo key={todo.id} id={todo.id} text={todo.text} />
+        ))}
+      </ul>
     </div>
   );
 }

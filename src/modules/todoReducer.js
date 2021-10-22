@@ -8,13 +8,14 @@ const EDIT = 'todo/EDIT';
 const add = (text) => {
   return {
     type: ADD,
-    todo: text,
+    text,
   };
 };
 
-const remove = () => {
+const remove = (id) => {
   return {
     type: REMOVE,
+    id,
   };
 };
 
@@ -33,10 +34,10 @@ export const todoActionCreators = {
 const todoReducer = (state = [], action) => {
   switch (action.type) {
     case ADD:
-      let newTodo = { todo: action.todo, id: uuidv4() };
+      let newTodo = { text: action.text, id: uuidv4() };
       return [newTodo, ...state];
     case REMOVE:
-      return state;
+      return state.filter((todo) => todo.id !== action.id);
     case EDIT:
       return state;
 
