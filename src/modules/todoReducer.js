@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 const ADD = 'todo/ADD';
 const REMOVE = 'todo/REMOVE';
 const EDIT = 'todo/EDIT';
+const TOGGLE = 'todo/TOGGLE';
 
 const add = (text) => {
   return {
@@ -27,22 +28,34 @@ const edit = (id, text) => {
   };
 };
 
+const toggle = (id) => {
+  return {
+    type: TOGGLE,
+    id,
+  };
+};
+
 export const todoActionCreators = {
   add,
   remove,
   edit,
+  toggle,
 };
 
 const todoReducer = (state = [], action) => {
   switch (action.type) {
     case ADD:
-      let newTodo = { text: action.text, id: uuidv4(), editable: false };
+      let newTodo = { text: action.text, id: uuidv4(), editable: false, complete: false };
       return [newTodo, ...state];
     case REMOVE:
       return [...state].filter((todo) => todo.id !== action.id);
     case EDIT:
       return [...state].map((todo) =>
         todo.id === action.id ? { ...todo, text: action.text, editable: false } : todo
+      );
+    case TOGGLE:
+      return [...state].map((todo) =>
+        todo.id === action.id ? { ...todo, complete: !todo.complete } : todo
       );
     default:
       return state;

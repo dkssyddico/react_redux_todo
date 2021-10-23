@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { todoActionCreators } from '../modules/todoReducer';
 
-function Todo({ deleteTodo, text, editable, editTodo }) {
+function Todo({ text, editable, complete, editTodo, toggleTodo, deleteTodo }) {
   const [edit, setEdit] = useState(editable);
   const [todo, setTodo] = useState(text);
 
@@ -12,6 +12,10 @@ function Todo({ deleteTodo, text, editable, editTodo }) {
 
   const onDeleteClick = () => {
     deleteTodo();
+  };
+
+  const onToggleClick = () => {
+    toggleTodo();
   };
 
   const onChange = (e) => {
@@ -28,6 +32,7 @@ function Todo({ deleteTodo, text, editable, editTodo }) {
 
   return (
     <li>
+      <button onClick={onToggleClick}>{complete ? 'incomplete' : 'complete'}</button>
       {edit ? (
         <>
           <input onChange={onChange} onKeyPress={onEnterPress} value={todo} />
@@ -35,18 +40,20 @@ function Todo({ deleteTodo, text, editable, editTodo }) {
       ) : (
         <>
           <span onClick={onTextClick}>{todo}</span>
-          <button onClick={onDeleteClick}>Delete</button>
         </>
       )}
+      <button onClick={onDeleteClick}>Delete</button>
     </li>
   );
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  console.log(ownProps);
   const { id } = ownProps;
   return {
     deleteTodo: () => dispatch(todoActionCreators.remove(id)),
     editTodo: (text) => dispatch(todoActionCreators.edit(id, text)),
+    toggleTodo: () => dispatch(todoActionCreators.toggle(id)),
   };
 };
 
