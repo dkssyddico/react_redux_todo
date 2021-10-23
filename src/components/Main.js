@@ -7,7 +7,7 @@ import Todo from './Todo';
 function Main({ todos }) {
   return (
     <div>
-      <TodoHeader />
+      <TodoHeader todos={todos} />
       <AddTodoForm />
       <ul>
         {todos.map((todo) => (

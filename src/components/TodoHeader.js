@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 function TodoHeader({ todos }) {
   const incompleteTodos = todos.filter((todo) => todo.complete === false);
@@ -11,8 +10,4 @@ function TodoHeader({ todos }) {
   );
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return { todos: state };
-};
-
-export default connect(mapStateToProps, null)(TodoHeader);
+export default TodoHeader;
