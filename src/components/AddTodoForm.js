@@ -23,7 +23,7 @@ const AddTodoForm = ({ addToDo }) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <input type='text' value={text} onChange={onChange} />
+        <input type='text' value={text} onChange={onChange} placeholder='Write todo here' />
         <button>Submit</button>
       </form>
     </div>
