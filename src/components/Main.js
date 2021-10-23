@@ -3,17 +3,16 @@ import { connect } from 'react-redux';
 import AddTodoForm from './AddTodoForm';
 import TodoHeader from './TodoHeader';
 import Todo from './Todo';
+import CompletedTodos from './CompletedTodos';
 
 function Main({ todos }) {
+  const completeTodos = todos.filter((todo) => todo.complete === true);
   return (
     <div>
       <TodoHeader todos={todos} />
       <AddTodoForm />
-      <ul>
-        {todos.map((todo) => (
-          <Todo key={todo.id} {...todo} />
-        ))}
-      </ul>
+      {completeTodos.length > 0 && <CompletedTodos todos={todos} />}
+      <ul>{todos.map((todo) => todo.complete === false && <Todo key={todo.id} {...todo} />)}</ul>
     </div>
   );
 }

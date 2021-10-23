@@ -48,7 +48,6 @@ function Todo({ text, editable, complete, editTodo, toggleTodo, deleteTodo }) {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log(ownProps);
   const { id } = ownProps;
   return {
     deleteTodo: () => dispatch(todoActionCreators.remove(id)),
