@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-function TodoHeader({ todos }) {
+function TodoHeader({ todos, toggleTheme }) {
   const incompleteTodos = todos.filter((todo) => todo.complete === false);
   const today = new Date();
   const dateString = today.toLocaleDateString('ko-KR', {
@@ -19,6 +19,7 @@ function TodoHeader({ todos }) {
       <p>{dateString}</p>
       <p>{day}</p>
       <span>{incompleteTodos.length}</span>
+      <button onClick={toggleTheme}>mode</button>
     </header>
   );
 }

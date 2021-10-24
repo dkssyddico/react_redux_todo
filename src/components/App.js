@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './GlobalStyle';
+import { lightTheme, darkTheme } from './theme';
 import TodoContainer from './TodoContainer';
 
 function App() {
-  const theme = {
-    colors: {
-      bgColor: '#123232',
-    },
-  };
+  const [themeMode, setThemeMode] = useState('light');
+  const theme = themeMode === 'light' ? lightTheme : darkTheme;
+  const toggleTheme = () => setThemeMode(themeMode === 'light' ? 'dark' : 'light');
   return (
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <TodoContainer />
+        <TodoContainer toggleTheme={toggleTheme} />
       </ThemeProvider>
     </>
   );

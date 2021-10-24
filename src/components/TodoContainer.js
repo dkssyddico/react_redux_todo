@@ -13,11 +13,11 @@ const Main = styled.main`
   background-color: ${(props) => props.theme.colors.bgColor};
 `;
 
-function TodoContainer({ todos }) {
+function TodoContainer({ todos, toggleTheme }) {
   const completeTodos = todos.filter((todo) => todo.complete === true);
   return (
     <Main>
-      <TodoHeader />
+      <TodoHeader toggleTheme={toggleTheme} />
       <AddTodoForm />
       {completeTodos.length > 0 && <CompletedTodos />}
       <TodoList />
