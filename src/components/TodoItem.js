@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { todoActionCreators } from '../modules/todoReducer';
 
-function Todo({ text, editable, complete, editTodo, toggleTodo, deleteTodo }) {
+const TodoItem = ({ text, editable, complete, editTodo, toggleTodo, deleteTodo }) => {
   const [edit, setEdit] = useState(editable);
   const [todo, setTodo] = useState(text);
 
@@ -45,7 +45,7 @@ function Todo({ text, editable, complete, editTodo, toggleTodo, deleteTodo }) {
       <button onClick={onDeleteClick}>Delete</button>
     </li>
   );
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { id } = ownProps;
@@ -56,4 +56,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Todo);
+export default connect(null, mapDispatchToProps)(TodoItem);

@@ -1,12 +1,12 @@
 import React from 'react';
 import GlobalStyle from './GlobalStyle';
-import Main from './Main';
+import TodoContainer from './TodoContainer';
 
 function App() {
   return (
     <div>
       <GlobalStyle />
-      <Main />
+      <TodoContainer />
     </div>
   );
 }
