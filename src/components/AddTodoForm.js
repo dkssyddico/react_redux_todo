@@ -1,6 +1,20 @@
 import React, { useState, useCallback } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { todoActionCreators } from '../modules/todoReducer';
+
+const FormContainer = styled.div`
+  margin-top: 10px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  font-size: 18px;
+  color: ${({ theme }) => theme.colors.lightTextColor};
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.lightTextColor};
+  }
+`;
 
 const AddTodoForm = ({ addToDo }) => {
   const [text, setText] = useState('');
@@ -21,12 +35,12 @@ const AddTodoForm = ({ addToDo }) => {
   }, []);
 
   return (
-    <div>
+    <FormContainer>
       <form onSubmit={onSubmit}>
-        <input type='text' value={text} onChange={onChange} placeholder='Write todo here' />
-        <button>Submit</button>
+        <Input type='text' value={text} onChange={onChange} placeholder='할 일을 입력해주세요.' />
+        {/* <button>Submit</button> */}
       </form>
-    </div>
+    </FormContainer>
   );
 };
 

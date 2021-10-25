@@ -1,6 +1,70 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+import { MdDone } from 'react-icons/md';
+import { HiTrash } from 'react-icons/hi';
+
 import { todoActionCreators } from '../modules/todoReducer';
+
+const CircleBtn = styled.div`
+  flex-basis: 1;
+  all: unset;
+  margin: 0;
+  margin-right: 8px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  border: 2px solid ${({ theme }) => theme.colors.titleColor};
+  color: ${({ theme }) => theme.colors.titleColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+const TodoText = styled.div`
+  width: 100%;
+  flex: 1;
+  font-size: 21px;
+  color: ${({ theme }) => theme.colors.textColor};
+  word-break: break-all;
+`;
+
+const RemoveBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dee2e6;
+  font-size: 24px;
+  cursor: pointer;
+  &:hover {
+    color: #ff6b6b;
+  }
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  flex: 1;
+  font-size: 21px;
+  color: ${({ theme }) => theme.colors.textColor};
+`;
+
+const Todo = styled.li`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  &:hover {
+    ${RemoveBtn} {
+      opacity: 1;
+    }
+  }
+`;
 
 const TodoItem = ({ text, editable, complete, editTodo, toggleTodo, deleteTodo }) => {
   const [edit, setEdit] = useState(editable);
@@ -31,19 +95,21 @@ const TodoItem = ({ text, editable, complete, editTodo, toggleTodo, deleteTodo }
   };
 
   return (
-    <li>
-      <button onClick={onToggleClick}>{complete ? 'incomplete' : 'complete'}</button>
+    <Todo>
+      <CircleBtn onClick={onToggleClick}>{complete ? <MdDone /> : ''}</CircleBtn>
       {edit ? (
         <>
-          <input onChange={onChange} onKeyPress={onEnterPress} value={todo} />
+          <Input onChange={onChange} onKeyPress={onEnterPress} value={todo} />
         </>
       ) : (
         <>
-          <span onClick={onTextClick}>{todo}</span>
+          <TodoText onClick={onTextClick}>{todo}</TodoText>
         </>
       )}
-      <button onClick={onDeleteClick}>Delete</button>
-    </li>
+      <RemoveBtn onClick={onDeleteClick}>
+        <HiTrash />
+      </RemoveBtn>
+    </Todo>
   );
 };
 

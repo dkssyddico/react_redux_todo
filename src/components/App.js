@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import useTheme from '../hooks/useTheme';
-import GlobalStyle from './GlobalStyle';
-import { lightTheme, darkTheme } from './theme';
+import GlobalStyle from '../styles/GlobalStyle';
+import { lightTheme, darkTheme } from '../styles/theme';
 import TodoContainer from './TodoContainer';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
     <>
       <ThemeProvider theme={themeMode}>
         <GlobalStyle />
-        <TodoContainer toggleTheme={toggleTheme} />
+        <TodoContainer theme={theme} toggleTheme={toggleTheme} />
       </ThemeProvider>
     </>
   );

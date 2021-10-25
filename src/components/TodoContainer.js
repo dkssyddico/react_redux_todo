@@ -10,17 +10,31 @@ const Main = styled.main`
   width: 512px;
   height: 500px;
   margin: 0 auto;
-  background-color: ${(props) => props.theme.colors.bgColor};
+  margin-top: 30px;
+  padding: 30px 45px;
+  border-radius: 16px;
+  background-color: ${({ theme }) => theme.colors.bgColor};
 `;
 
-function TodoContainer({ todos, toggleTheme }) {
+const TodoListContainer = styled.section`
+  margin-top: 20px;
+  height: 270px;
+  overflow-y: scroll;
+  h1 {
+    color: ${({ theme }) => theme.colors.textColor};
+  }
+`;
+
+function TodoContainer({ todos, theme, toggleTheme }) {
   const completeTodos = todos.filter((todo) => todo.complete === true);
   return (
     <Main>
-      <TodoHeader toggleTheme={toggleTheme} />
+      <TodoHeader theme={theme} toggleTheme={toggleTheme} />
       <AddTodoForm />
-      {completeTodos.length > 0 && <CompletedTodos />}
-      <TodoList />
+      <TodoListContainer>
+        {completeTodos.length > 0 && <CompletedTodos />}
+        {todos.length > 0 ? <TodoList /> : <h1>할 일을 추가해주세요.</h1>}
+      </TodoListContainer>
     </Main>
   );
 }
