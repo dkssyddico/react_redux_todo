@@ -26,6 +26,7 @@ function TodoContainer({ todos, toggleTheme }) {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return { todos: state };
 };
 
