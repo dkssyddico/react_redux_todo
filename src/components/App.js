@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import useTheme from '../hooks/useTheme';
 import GlobalStyle from './GlobalStyle';
 import { lightTheme, darkTheme } from './theme';
 import TodoContainer from './TodoContainer';
 
 function App() {
-  const [themeMode, setThemeMode] = useState('light');
-  const theme = themeMode === 'light' ? lightTheme : darkTheme;
-  const toggleTheme = () => setThemeMode(themeMode === 'light' ? 'dark' : 'light');
+  const [theme, toggleTheme, componentMounted] = useTheme();
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
+  if (!componentMounted) {
+    return <div>Wait loading</div>;
+  }
+
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeMode}>
         <GlobalStyle />
         <TodoContainer toggleTheme={toggleTheme} />
       </ThemeProvider>
