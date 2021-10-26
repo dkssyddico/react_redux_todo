@@ -4,13 +4,18 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-
+  
   body {
-    margin: 0;
+    box-sizing: border-box;
+    padding-top: 30px;
+    margin:0;
     background-color: lavender;
     width: 100%;
     height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    @media only screen and (min-width: 390px) and (max-width: 767px) { 
+      padding: 0;
+    }
   }
 
   ul {
@@ -24,6 +29,10 @@ const GlobalStyle = createGlobalStyle`
 
   input {
     all: unset;
+  }
+  
+  p {
+    margin: 0;
   }
 `;
 

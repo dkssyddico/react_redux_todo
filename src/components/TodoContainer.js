@@ -10,10 +10,13 @@ const Main = styled.main`
   width: 512px;
   height: 500px;
   margin: 0 auto;
-  margin-top: 30px;
   padding: 30px 45px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.bgColor};
+  @media only screen and (min-width: 390px) and (max-width: 767px) {
+    width: 390px;
+    height: 100vh;
+  }
 `;
 
 const TodoListContainer = styled.section`
@@ -40,7 +43,6 @@ function TodoContainer({ todos, theme, toggleTheme }) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return { todos: state };
 };
 

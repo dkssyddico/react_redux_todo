@@ -81,13 +81,18 @@ const DateContainer = styled.div`
   font-size: 24px;
   font-weight: 500;
   margin-bottom: 20px;
+  display: flex;
   color: ${({ theme }) => theme.colors.textColor};
-  p {
-    margin: 0;
+  @media only screen and (min-width: 390px) and (max-width: 767px) {
+    flex-direction: column;
   }
 `;
 
-const Day = styled.span`
+const DateStr = styled.p`
+  margin-right: 10px;
+`;
+
+const Day = styled.p`
   color: ${({ theme }) => theme.colors.lightTextColor};
 `;
 
@@ -107,9 +112,8 @@ function TodoHeader({ todos, toggleTheme }) {
     <Header>
       <Container>
         <DateContainer>
-          <p>
-            {dateString} <Day>{day}</Day>
-          </p>
+          <DateStr>{dateString}</DateStr>
+          <Day>{day}</Day>
         </DateContainer>
         <BtnContainer>
           <Button onClick={toggleTheme}>
