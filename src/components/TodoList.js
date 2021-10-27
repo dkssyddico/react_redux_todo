@@ -5,7 +5,6 @@ import TodoItem from './TodoItem';
 
 const List = styled.ul`
   height: 300px;
-  overflow-y: scroll;
 `;
 
 function TodoList({ todos }) {
