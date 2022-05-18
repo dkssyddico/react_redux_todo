@@ -69,9 +69,7 @@ const todoReducer = (state = [], action) => {
       );
       return saveTodos(edited);
     case TOGGLE:
-      const toggled = [...state].map((todo) =>
-        todo.id === action.id ? { ...todo, complete: !todo.complete } : todo
-      );
+      const toggled = [...state].map((todo) => (todo.id === action.id ? { ...todo, complete: !todo.complete } : todo));
       return saveTodos(toggled);
     default:
       return state;
